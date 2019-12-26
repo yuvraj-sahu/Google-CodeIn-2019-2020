@@ -1,0 +1,8 @@
+This program is a basic HTTP server in Java. To use, you must have a Java compiler and a web browser.
+
+You can change the port number and the message in the code if you wish. 
+
+Once you compile the Java code, launch http://localhost:<PORT_NUMBER> or just localhost:<PORT_NUMBER>.
+Ex. If you use the default port number, you would launch http://localhost:8080 or localhost:8080.
+
+When it loads, you should see your message on the screen!
