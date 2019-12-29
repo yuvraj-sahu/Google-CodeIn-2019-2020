@@ -9,7 +9,7 @@ Below is a brief description of each of those terms.
 Encapsulation describes the restriction of data, allowing only certain modifications to be made. In simpler terms, it is where data is made private and can only be accessed and changed by specific methods. This is used to make sure that data cannot have extreme or unreasonable values.
 
 In the code, you can see that several variables are encapsulated. This concept is demonstrated in the following places:
-* In the Animal class, the speciesName variable can only be retrieved and not changed to avoid a living thing from changing its species. 
+* In the Animal class, the speciesName variable can only be retrieved and not changed to prevent an animal from changing its species. 
 * In the Person class, the name and age variables can be retrieved, but can only be changed in certain ways. The age variable must be within a specific reasonable range (0 to 125 years old) in order to be set to the new value. The name variable must not be blank in order to be changed.
 * In the Teenager class, the age variable is restricted like the Person class, but must have an age range between 13 and 19 years old.
 
@@ -23,7 +23,7 @@ Note that encapsulation is a practice, not a feature that requires special keywo
 
 Inheritance is the use of methods from another class - the idea is that a class is 'inheriting' methods from another class. The class that inherits the methods is called the subclass, and the class that is being inherited is known as the superclass. 
 
-A subclass will usually inherit methods from a superclass that it is a subgroup of. For example, since a person is a subgroup of a living thing (a person is a type of living thing), it would make sense for the Person class to inherit from the Animal class.
+A subclass will usually inherit methods from a superclass that it is a subgroup of. For example, since a person is a subgroup of a animal (a person is a type of animal), it would make sense for the Person class to inherit from the Animal class.
 
 In Java, one would use the <b>extends</b> keyword. All classes inherit from the Object class by default (you do not have to write it in the code), and therefore inherit certain methods, such as the equals() method, the toString() method, and the clone() method.
 
@@ -40,7 +40,7 @@ In order to get public methods/data from a superclass in Java, one must use the 
 
 An abstract class is a class where not all methods are defined. This can be used when a class is too vague to specify how something would be done. 
 
-For example, the Animal class is abstract and does not provide an implementation for the method speak(). This is because different living things have different ways of speaking and there is no general way that animals speak.
+For example, the Animal class is abstract and does not provide an implementation for the method speak(). This is because different animals have different ways of speaking and there is no general way that animals speak.
 
 When a class inherits from an abstract class, it has two options - it can either declare itself as abstract, or it can provide an implementation for the abstract method(s).
 
