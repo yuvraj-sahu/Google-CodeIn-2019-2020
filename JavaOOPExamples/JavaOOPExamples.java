@@ -75,6 +75,10 @@ class Person extends Animal {
 
 class Teenager extends Person {
 
+    /* This constructor demonstrates run-time polymorphism. Since the method setAge
+     * was overridden in this class, when the parent constructor is called and the
+     * setAge method is called from there, it calls the Teenager setAge method
+     * (since it was overridden in this class), which only allows ages 13 to 19. */
     public Teenager(String name, int age) {
         super(name, age);
 
@@ -119,34 +123,53 @@ class Teenager extends Person {
     }
 }
 
+class Child extends Person {
+    // This constructor automatically calls super()
+    Child() {}
+
+    //You must use super here
+    Child(String name, int age) {
+        super(name, age);
+    }
+
+    public void setAge(int ageInput) {
+        if (ageInput >= 0 && ageInput <= 12) {
+            super.setAge(ageInput);
+        } else {
+            System.out.println("The given age is not valid for a child. The age was not set. ");
+        }
+    }
+}
+
 public class JavaOOPExamples {
     public static void main(String[] args) {
-
         /* This demonstrates the use of encapsulation - it doesn't allow a blank name.
          * In addition, this prints the speak method from the Person class,
          * which had to be implemented because of abstraction rules. */
         Person person = new Person("James Smith", 30);
-        System.out.println("Successful constructor at line 128. ");
-        System.out.print("setName output from line 131: ");
+        System.out.println("Successful constructor at line 149. ");
+        System.out.print("setName output from line 152: ");
         person.setName("");
-        System.out.println("person's name (line 132): " + person.getName());
-        System.out.println("person speaking (line 133): " + person.speak());
+        System.out.println("person's name (line 153): " + person.getName());
+        System.out.println("person speaking (line 154): " + person.speak());
         System.out.println();
 
         /* This shows that all superclass constructors are called (by default) */
-        System.out.println("Constructor output from line 138 (next 2 lines): ");
+        System.out.println("Constructor output from line 159 (next 2 lines): ");
         Person otherPerson = new Person();
-        System.out.println("Constructor output from line 140 (next 3 lines): ");
+        System.out.println("Constructor output from line 161 (next 3 lines): ");
         otherPerson = new Teenager();
+        System.out.println("Constructor output from line 163 (next 3 lines): ");
+        otherPerson = new Child();
         System.out.println();
 
         /* This shows that the constructor saw that the input values were invalid
          * and did set the variables to these values. It also shows that default
          * values were used so that name and age would have some value. */
-        System.out.println("Constructor output from line 147 (next 2 lines of output): ");
+        System.out.println("Constructor output from line 170 (next 2 lines of output): ");
         Person badPerson = new Person("", -30);
-        System.out.println("badPerson's age (line 148): " + badPerson.getAge());
-        System.out.println("badPerson's name (line 149): " + badPerson.getName());
+        System.out.println("badPerson's age (line 171): " + badPerson.getAge());
+        System.out.println("badPerson's name (line 172): " + badPerson.getName());
         System.out.println();
 
         /* This shows that the Teenager class does not allow the age to be set to 20,
@@ -155,10 +178,10 @@ public class JavaOOPExamples {
          * encapsulation and inheritance (because of the use of methods from the
          * superclass). */
         Teenager teen = new Teenager("Some Body", 17);
-        System.out.println("Successful constructor at line 157. ");
-        System.out.print("setAge output from line 160: ");
+        System.out.println("Successful constructor at line 180. ");
+        System.out.print("setAge output from line 183: ");
         teen.setAge(20);
-        System.out.println("teen's age (line 161): " + teen.getAge());
+        System.out.println("teen's age (line 184): " + teen.getAge());
         System.out.println();
 
         /* This shows that there are default values for the Teenager class that are
@@ -166,37 +189,65 @@ public class JavaOOPExamples {
          * a teenager, it provides a different value (see the constructor). The name
          * default is the same as the one in the Person class. This also is an example
          * of run-time polymorphism. */
-        System.out.println("Constructor output from line 170 (next 2 lines of output): ");
+        System.out.println("Constructor output from line 193 (next 2 lines of output): ");
         Teenager badTeen = new Teenager("", 10);
-        System.out.println("badTeen's age (line 171): " + badTeen.getAge());
-        System.out.println("badTeen's name (line 172): " + badTeen.getName());
+        System.out.println("badTeen's age (line 194): " + badTeen.getAge());
+        System.out.println("badTeen's name (line 195): " + badTeen.getName());
         System.out.println();
 
         /* This shows the use of overloaded methods (compile-time polymorphism).
          * They do different things because of different parameter lists (and
          * different implementations of the method being done). */
         Teenager otherTeen = new Teenager("Some One", 13);
-        System.out.println("Successful constructor at line 178. ");
+        System.out.println("Successful constructor at line 201. ");
         otherTeen.setAge(16);
-        System.out.println("otherTeen's age (line 181): " + otherTeen.getAge());
+        System.out.println("otherTeen's age (line 204): " + otherTeen.getAge());
         otherTeen.setAge();
-        System.out.println("otherTeen's new age (line 183): " + otherTeen.getAge());
+        System.out.println("otherTeen's new age (line 206): " + otherTeen.getAge());
         System.out.println();
 
-        /* This combines several concepts into one block. It also highlights that
-         * one can do: Superclass name = new Subclass(parameters);. This is useful
-         * if one wants to make it a new Superclass later on (one would not have to
+        /* This shows the use of run-time polymorphism (overridden methods).
+         * The methods do different things based on the reference. When
+         * anotherPerson refers to a new Person, setAge allows the age to be set to
+         * 30 years old. However, the setAge method from the Teenager and Child classes
+         * do now allow the age to be set to 30 years old, as they only allow ages
+         * within their ranges to be set. Also, the speak method does different
+         * things for Teenagers and Persons. */
+        Person anotherPerson = new Person("A Person", 40);
+        System.out.println("Successful constructor at line 216.");
+        System.out.println("Age of anotherPerson (line 218):" + anotherPerson.getAge());
+        System.out.print("setAge output from Teenager constructor at line 220: ");
+        anotherPerson = new Teenager("A Teenager", 40);
+        anotherPerson.setAge(15);
+        System.out.println("Successful setAge at line 221. ");
+        System.out.print("setAge output from Child constructor at line 224: ");
+        anotherPerson = new Child("A Child", 40);
+        System.out.print("setAge output at line 226: ");
+        anotherPerson.setAge(15);
+        anotherPerson.setAge(10);
+        System.out.println("Successful setAge at line 227. ");
+        anotherPerson = new Person("New Person", 40);
+        System.out.println("anotherPerson speaks (line 230): " + anotherPerson.speak());
+        anotherPerson = new Person("New Teenager", 15);
+        System.out.println("anotherPerson speaks again (line 232): " + anotherPerson.speak());
+        System.out.println();
+
+        /* This combines several concepts into one block. It demonstrates run-time
+         * polymorphism (see the appropriate constructor and the description).
+         * In addition to this, it highlights that one can do:
+         * Superclass name = new Subclass(parameters);. This is useful if one
+         * wants to make it a new Superclass later on (one would not have to
          * make a new reference). The downside is shown in the next block... */
-        System.out.print("Constructor output from line 191: ");
+        System.out.print("Constructor output from line 242: ");
         Person interestingPerson = new Teenager("Average Joe",  10);
-        System.out.print("setAge output from line 193: ");
+        System.out.print("setAge output from line 244: ");
         interestingPerson.setAge(20);
-        System.out.println("interestingPerson's age (line 194): " + interestingPerson.getAge());
+        System.out.println("interestingPerson's age (line 245): " + interestingPerson.getAge());
         interestingPerson.setAge(13);
-        System.out.println("interestingPerson's new age (line 196): " + interestingPerson.getAge());
+        System.out.println("interestingPerson's new age (line 247): " + interestingPerson.getAge());
         interestingPerson = new Person("Other Joe", 30);
-        System.out.println("Successful constructor at line 197. ");
-        System.out.println("interestingPerson's newer age (line 199): " + interestingPerson.getAge());
+        System.out.println("Successful constructor at line 248. ");
+        System.out.println("interestingPerson's newer age (line 250): " + interestingPerson.getAge());
         System.out.println();
 
         /* A downside to using that syntax is that all methods used by that reference
@@ -208,10 +259,11 @@ public class JavaOOPExamples {
          * subclass. One does not have to cast for the speak method because it is present
          * in both classes (despite the fact that it is abstract in Animal). */
         Animal interestingThing = new Person("First Last", 40);
-        System.out.println("Successful constructor at line 210. ");
+        System.out.println("Successful constructor at line 261. ");
         ((Person)interestingThing).setAge(20);
-        System.out.println("interestingThing's age (line 213): " + ((Person)interestingThing).getAge());
-        System.out.println("interestingThing's species (line 214): " + interestingThing.getSpeciesName());
-        System.out.println("interestingThing speaks (line 215): " + interestingThing.speak());
+        System.out.println("interestingThing's age (line 264): " + ((Person)interestingThing).getAge());
+        System.out.println("interestingThing's species (line 265): " + interestingThing.getSpeciesName());
+        System.out.println("interestingThing speaks (line 266): " + interestingThing.speak());
+        System.out.println();
     }
 }
