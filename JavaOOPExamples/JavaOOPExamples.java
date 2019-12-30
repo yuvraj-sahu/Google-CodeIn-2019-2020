@@ -228,7 +228,7 @@ public class JavaOOPExamples {
         System.out.println("Successful setAge at line 227. ");
         anotherPerson = new Person("New Person", 40);
         System.out.println("anotherPerson speaks (line 230): " + anotherPerson.speak());
-        anotherPerson = new Person("New Teenager", 15);
+        anotherPerson = new Teenager("New Teenager", 15);
         System.out.println("anotherPerson speaks again (line 232): " + anotherPerson.speak());
         System.out.println();
 
