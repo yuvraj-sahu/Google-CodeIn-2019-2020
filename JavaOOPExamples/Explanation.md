@@ -34,7 +34,7 @@ In the example code, you see that:
 
 In Java, a class can only inherit from one other class. However, it is possible for a class to inherit from a class that is inheriting from a class, as shown in the example code.
 
-In order to get public methods/data from a superclass in Java, one must use the keyword <b>super</b>. To get methods or data, one would do super.<i>method_name</i> or super.<i>variable_name</i>, as shown in the setAge method of the Teenager class. This calls the setAge from the Person class. In order to call the constructor of the superclass, do super(<i>parameter_list</i>). This can only be in the first line of a Java subclass constructor. Java will automatically pass the same parameters to the superclass constructor, and Java will automatically provide a parameter-less constructor if you do not write any constructors. 
+In order to get public methods/data from a superclass in Java, one must use the keyword <b>super</b>. To get methods or data, one would do super.<i>method_name</i> or super.<i>variable_name</i>, as shown in the setAge method of the Teenager class. This calls the setAge from the Person class. In order to call the constructor of the superclass, do super(<i>parameter_list</i>). This can only be in the first line of a Java subclass constructor. Java will automatically pass no parameters to the superclass constructor (which is like doing super()) if you do not specify any super constructor, and Java will automatically provide a parameter-less constructor if you do not write any constructors. 
 
 ## Abstraction
 
@@ -52,7 +52,7 @@ In general, polymorphism is the practice of a method having multiple different f
 
 ### Compile-Time Polymorphism
 
-This is the use of overloaded methods. Overloaded methods are methods with the same name but a different parameter list. The method typically does different things depending on the parameter list. One must make two seperate declarations.
+This is the use of overloaded methods. Overloaded methods are methods with the same name but a different parameter list. The method typically does different things depending on the parameter list. One must make two seperate declarations. 
 
 For example, the setAge method of the Person class is an overloaded method. If you pass it an integer representing the age, it will check if it is reasonable and set the variable to that age. However, if you do not pass it any parameters, it will simply increment the age.
 
@@ -63,6 +63,8 @@ While Java is compiling the program, it must check which version of the method y
 This is the use of overriding methods. Overridden methods are superclass methods that are redefined in a subclass. For example, the setAge method is an overriden method because the Teenager class redefines this method to fit the age requirements to be a teenager.
 
 Using this method, let's take a look at the badTeen example in the code. The Teenager constructor calls the superclass constructor, which in turn calls the setName() and setAge() methods. The setAge method will actually refer to the one in the Teenager class because it was overridden in this class and a new Teenager was being created, not a new Person. Because of this, it realizes that someone 10 years old is not a teenager, and prints that this is an invalid age instead of setting the age to 10 (this is what the Person constructor would have done since that is a reasonable age for a person). However, since the setName() method was not overridden in the Teenager class, the parent implementation was used.
+
+In addition, one can see how the Child class and Teenager class setAge methods have different age requirements. They were both overridden from the Parent class, and they work differently from each other. You can see a demonstration in the example code, along with an example of the speak method being overridden by the Teenager class from the one in the Person class. 
 
 ## The Example Code
 
