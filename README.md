@@ -27,4 +27,8 @@ Before claiming the next task, I claimed a task which required me to deploy a Qu
 7. I completed the Go URL Shortener task, which required me to create a Go program that would check the path and redirect to another web page. The code, along with usage instructions, is in the GoURLShortener folder.
     - Task Link: https://codein.withgoogle.com/tasks/6311127072374784/
 
+![My Completed Tasks](final_results_2.png)
+
 Overall, I completed 7 tasks for the JBoss Community and was labeled as one of the community leaders for this organization. 
+
+![Community Leader Recognition](final_results_1.png)
